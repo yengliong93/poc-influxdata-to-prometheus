@@ -26,6 +26,17 @@ Add pushgateway to _prometheus_helm_chart/templates/prometheus-config-map.yaml_ 
 5. Login to Prometheus server and check the data.
 <img src="images/cpu_usage_on_prometheus.JPG"/>
 
+6. Since the Prometheus's namespace is default, we have to update the prometheus-url in _prometheus_custom_metrics_helm_chart/templates/custom-metrics-apiserver-deployment.yaml_ to default namespace.
+
+> --prometheus-url=http://prom-service.default.svc:9090/
+
+7. Run kubectl command to check the cpu_usage data exposed to Prometheus Adapter (Custom Metrics). 
+
+`sudo kubectl get --raw /apis/custom.metrics.k8s.io/v1beta1 | grep nodes | jq . | grep node | grep -i influx`
+
+Expected Output:
+>       "name": "nodes/influxdb_cpu_usage",
+
 ## Build data-exporter image
 sudo docker build \
      --build-arg HTTP_PROXY=${HTTP_PROXY:-} \
