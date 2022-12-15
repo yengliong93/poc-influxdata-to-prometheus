@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: pushgateway
+  namespace: default
+  labels:
+    name: pushgateway
+spec:
+  selector:
+    matchLabels:
+      name: pushgateway
+  template:
+    metadata:
+      labels:
+        name: pushgateway
+    spec:
+      containers:
+      - name: pushgateway
+        image: prom/pushgateway:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+          - name: http
+            containerPort: 9091
+            protocol: TCP
+      terminationGracePeriodSeconds: 30
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: pushgateway
+spec:
+  type: ClusterIP
+  selector:
+    app: pushgateway
+  ports:
+    - name: http
+      port: 9091
+      targetPort: 9091

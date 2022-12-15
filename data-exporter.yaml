@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: data-exporter
+  namespace: default
+spec:
+  containers:
+  - image: data-exporter:latest
+    imagePullPolicy: IfNotPresent
+    name: data-exporter
+  restartPolicy: Always
+
