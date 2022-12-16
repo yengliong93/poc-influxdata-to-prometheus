@@ -83,7 +83,7 @@ Add pushgateway to _prometheus_helm_chart/templates/prometheus-config-map.yaml_ 
 `sudo kubectl apply -f pushgateway.yaml`
 5. Deploy data-exporter. 
 
-   **NOTE: Please build the data-exporter image and update the image's value in data-exporter.yaml.**
+   **NOTE: Please [build the data-exporter image](#Build-data-exporter-image) and update the image's value in data-exporter.yaml.**
 
    `sudo kubectl apply -f data-exporter.yaml`
 
