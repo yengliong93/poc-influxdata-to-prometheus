@@ -51,7 +51,7 @@
      ```
    - For Telegraf: 
      
-     Please generate and get the token from Influxdb2. The config outputs as follows:
+     Please generate and get the token from Influxdb2. The config outputs in telegraf/values.yaml as follows:
      ```
        outputs:
          - influxdb_v2:
